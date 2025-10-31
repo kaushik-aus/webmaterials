@@ -1,7 +1,6 @@
 "use client";
 
-// Remove the custom JSX IntrinsicElements declaration from this file.
-// Move it to a separate file named model-viewer.d.ts in your project root or inside types/ folder.
+import React from "react";
 
 // Uses the <model-viewer> Web Component (loaded in layout.tsx Script)
 export function ModelViewer({
@@ -17,16 +16,14 @@ export function ModelViewer({
   autoRotate?: boolean;
   cameraControls?: boolean;
 }) {
-  return (
-    <model-viewer
-      src={src}
-      poster={poster}
-      ar={ar}
-      autoplay={autoRotate}
-      camera-controls={cameraControls}
-      exposure="1"
-      shadow-intensity="0.4"
-      style={{ width: "100%", height: "480px", borderRadius: 12 }}
-    />
-  );
+  return React.createElement("model-viewer", {
+    src,
+    poster,
+    ar,
+    autoplay: autoRotate,
+    "camera-controls": cameraControls,
+    exposure: "1",
+    "shadow-intensity": "0.4",
+    style: { width: "100%", height: "480px", borderRadius: 12 },
+  });
 }
