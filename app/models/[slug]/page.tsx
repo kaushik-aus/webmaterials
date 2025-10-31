@@ -7,12 +7,13 @@ export function generateStaticParams() {
   return models.map((m) => ({ slug: m.slug }));
 }
 
-export default function ModelDetailPage({
+export default async function ModelDetailPage({
   params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }) {
-  const model = models.find((m) => m.slug === params.slug);
+  const { slug } = await params;
+  const model = models.find((m) => m.slug === slug);
   if (!model) return notFound();
 
   return (

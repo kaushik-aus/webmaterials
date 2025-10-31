@@ -1,16 +1,13 @@
 import type { Metadata } from "next";
-import { Inter, Playfair_Display } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
 import { CartProvider } from "@/components/cart/CartProvider";
 import Navbar from "@/components/site/Navbar";
 import Footer from "@/components/site/Footer";
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
-const playfair = Playfair_Display({
-  subsets: ["latin"],
-  variable: "--font-playfair",
-});
+// Using system fonts as fallback due to network restrictions
+const inter = { variable: "--font-inter" };
+const playfair = { variable: "--font-playfair" };
 
 export const metadata: Metadata = {
   title: "ModelMart — Buy and sell 3D models",

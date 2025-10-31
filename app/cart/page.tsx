@@ -3,9 +3,44 @@
 import Link from "next/link";
 import { useCart } from "@/components/cart/CartProvider";
 import { formatPrice } from "@/data/models";
+import { useState } from "react";
 
 export default function CartPage() {
   const { items, remove, clear, totalInCents } = useCart();
+  const [isCheckingOut, setIsCheckingOut] = useState(false);
+
+  const handleCheckout = async () => {
+    setIsCheckingOut(true);
+    try {
+      const response = await fetch("/api/checkout", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          items: items.map((line) => ({
+            id: line.model.slug,
+            name: line.model.title,
+            price: line.model.priceInCents,
+            quantity: line.qty,
+          })),
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to create checkout session");
+      }
+
+      const { url } = await response.json();
+      if (url) {
+        window.location.href = url;
+      }
+    } catch (error) {
+      console.error("Checkout error:", error);
+      alert("Failed to initiate checkout. Please try again.");
+      setIsCheckingOut(false);
+    }
+  };
 
   return (
     <section className="container py-8">
@@ -55,10 +90,10 @@ export default function CartPage() {
               </div>
               <button
                 className="btn"
-                aria-disabled
-                title="Checkout to be wired to Stripe"
+                onClick={handleCheckout}
+                disabled={isCheckingOut}
               >
-                Checkout (soon)
+                {isCheckingOut ? "Redirecting..." : "Checkout"}
               </button>
             </div>
           </div>

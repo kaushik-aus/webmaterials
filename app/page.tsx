@@ -1,34 +1,22 @@
 import Link from "next/link";
 import { models, formatPrice } from "@/data/models";
+import { SpotlightHero } from "@/components/ui/SpotlightHero";
+import { BentoCategories } from "@/components/ui/BentoCategories";
+import { CreatorsMarquee } from "@/components/ui/CreatorsMarquee";
 
 export default function HomePage() {
   const featured = models.slice(0, 3);
 
   return (
     <>
-      {/* Hero */}
-      <section className="relative overflow-hidden">
-        <div className="container py-16 md:py-24">
-          <p className="uppercase tracking-wide text-xs text-muted mb-2">
-            Marketplace for 3D
-          </p>
-          <h1 className="font-display text-4xl md:text-5xl leading-tight">
-            Sell and buy production‑ready 3D models
-          </h1>
-          <p className="text-muted mt-3 max-w-2xl">
-            Preview models live in 3D, purchase securely, and download
-            instantly. Built for 3D artists, game devs, and archviz teams.
-          </p>
-          <div className="mt-6 flex gap-3">
-            <Link href="/models" className="btn">
-              Browse models
-            </Link>
-            <a className="btn btn-secondary" aria-disabled title="Coming soon">
-              Become a seller (soon)
-            </a>
-          </div>
-        </div>
-      </section>
+      {/* New Hero Component */}
+      <SpotlightHero />
+
+      {/* Bento Categories */}
+      <BentoCategories />
+
+      {/* Creators Marquee */}
+      <CreatorsMarquee />
 
       {/* Featured */}
       <section className="container pb-12">
