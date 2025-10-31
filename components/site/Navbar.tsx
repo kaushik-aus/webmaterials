@@ -2,9 +2,24 @@
 
 import Link from "next/link";
 import { useCart } from "@/components/cart/CartProvider";
+import { useEffect, useState } from "react";
 
 export default function Navbar() {
   const { count } = useCart();
+  const [isSignedIn, setIsSignedIn] = useState(false);
+
+  useEffect(() => {
+    // Check for session - this is a simple check that won't crash if auth is not configured
+    fetch("/api/auth/session")
+      .then((res) => res.json())
+      .then((data) => {
+        setIsSignedIn(!!data?.user);
+      })
+      .catch(() => {
+        // Auth not configured or error - fail silently
+        setIsSignedIn(false);
+      });
+  }, []);
 
   return (
     <header className="border-b border-muted/60 sticky top-0 bg-paper/80 backdrop-blur-sm z-10">
@@ -27,12 +42,15 @@ export default function Navbar() {
               </span>
             )}
           </Link>
-          <Link
-            href="/api/auth/signin"
-            className="text-sm hover:underline"
-          >
-            Sign in
-          </Link>
+          {isSignedIn ? (
+            <Link href="/signin" className="text-sm hover:underline">
+              Account
+            </Link>
+          ) : (
+            <Link href="/signin" className="text-sm hover:underline">
+              Sign in
+            </Link>
+          )}
         </div>
       </nav>
     </header>
