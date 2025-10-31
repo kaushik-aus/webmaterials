@@ -1,21 +1,45 @@
 import Link from "next/link";
 import { models, formatPrice } from "@/data/models";
-import { SpotlightHero } from "@/components/ui/SpotlightHero";
-import { BentoCategories } from "@/components/ui/BentoCategories";
-import { CreatorsMarquee } from "@/components/ui/CreatorsMarquee";
-
+import SpotlightHero from "@/components/ui/SpotlightHero";
+import BentoCategories from "@/components/ui/BentoCategories";
+import CreatorsMarquee from "@/components/ui/CreatorsMarquee";
+import AutoCarousel from "@/components/ui/AutoCarousel";
+import { banners } from "@/data/banners";
+import CardNav from "@/components/ui/CardNav";
+import { cardNavItems } from "@/data/cardNavItems";
 export default function HomePage() {
   const featured = models.slice(0, 3);
 
   return (
-    <>
-      {/* New Hero Component */}
+    <div className="relative">
+      {/* Card Nav with site name, hamburger → search → Cart → Sign in */}
+      <CardNav
+        siteName="ModelMart"
+        items={cardNavItems as any}
+        searchWords={[
+          "Aceternity UI",
+          "Fight Club",
+          "The Matrix",
+          "The Jungle",
+        ]}
+      />
+
+      {/* Spacer so CardNav doesn't overlap */}
+      <div className="pt-20 md:pt-24" />
+
+      {/* Smaller, faster carousel as earlier */}
+      <AutoCarousel
+        items={banners}
+        autoPlay
+        interval={3000}
+        pauseOnHover
+        showArrows
+        showDots
+        height="h-56 md:h-[22rem]"
+      />
+
       <SpotlightHero />
-
-      {/* Bento Categories */}
       <BentoCategories />
-
-      {/* Creators Marquee */}
       <CreatorsMarquee />
 
       {/* Featured */}
@@ -70,6 +94,6 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-    </>
+    </div>
   );
 }

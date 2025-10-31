@@ -1,71 +1,60 @@
 "use client";
 
+import Image from "next/image";
+import Section from "./Section";
 import { creators } from "@/data/creators";
 
-export function CreatorsMarquee() {
+export default function CreatorsMarquee() {
   return (
-    <section className="py-12 overflow-hidden border-y border-muted/60">
-      <div className="container mb-4">
-        <h2 className="font-display text-2xl md:text-3xl text-center">
-          Featured Creators
-        </h2>
+    <Section className="py-10">
+      <div className="container">
+        <h2 className="text-xl text-zinc-300 mb-3">Featured Creators</h2>
       </div>
-
-      <div className="relative">
-        {/* Gradient fade on edges */}
-        <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-paper to-transparent z-10" />
-        <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-paper to-transparent z-10" />
-
-        {/* Marquee container */}
-        <div className="marquee-container">
-          <div className="marquee-content">
-            {/* Duplicate creators for seamless loop */}
-            {[...creators, ...creators].map((creator, idx) => (
-              <div
-                key={`${creator.handle}-${idx}`}
-                className="inline-flex items-center gap-3 mx-6 whitespace-nowrap"
-              >
-                <img
-                  src={creator.avatarUrl}
-                  alt={`${creator.name} avatar`}
-                  className="w-12 h-12 rounded-full bg-white border-2 border-muted/60"
+      <div className="relative overflow-hidden">
+        <div className="marquee flex gap-8 py-4">
+          {[...creators, ...creators].map((c, i) => (
+            <div
+              key={`${c.handle}-${i}`}
+              className="glass rounded-full px-4 py-2 flex items-center gap-3 border-glass"
+            >
+              {c.avatarUrl ? (
+                <Image
+                  src={c.avatarUrl}
+                  alt={c.name}
+                  width={28}
+                  height={28}
+                  className="rounded-full"
                 />
-                <div>
-                  <div className="font-semibold">{creator.name}</div>
-                  <div className="text-sm text-muted">{creator.handle}</div>
+              ) : (
+                <div className="h-7 w-7 rounded-full bg-cyan-500/30 grid place-items-center text-sm">
+                  {c.emoji ?? "✨"}
                 </div>
-              </div>
-            ))}
-          </div>
+              )}
+              <span className="text-sm text-zinc-300">{c.name}</span>
+              <span className="text-xs text-zinc-400">{c.handle}</span>
+            </div>
+          ))}
         </div>
       </div>
-
       <style jsx>{`
-        .marquee-container {
-          display: flex;
-          overflow: hidden;
+        .marquee {
+          width: max-content;
+          animation: scroll 28s linear infinite;
         }
-
-        .marquee-content {
-          display: flex;
-          animation: marquee 30s linear infinite;
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-          .marquee-content {
-            animation: marquee 120s linear infinite; /* Slower animation for reduced motion */
-          }
-        }
-
-        @keyframes marquee {
-          0% {
+        @keyframes scroll {
+          from {
             transform: translateX(0);
           }
-          100% {
+          to {
             transform: translateX(-50%);
           }
         }
+        @media (prefers-reduced-motion: reduce) {
+          .marquee {
+            animation: none;
+          }
+        }
       `}</style>
-    </section>
+    </Section>
   );
 }

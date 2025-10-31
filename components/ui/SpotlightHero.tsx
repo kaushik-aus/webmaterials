@@ -1,45 +1,137 @@
-import Link from "next/link";
+"use client";
 
-export function SpotlightHero() {
+import { motion } from "framer-motion";
+import NeonButton from "@/components/ui/NeonButton";
+import { AnimatedTestimonials } from "@/components/ui/animated-testimonials";
+import { creatorTestimonials } from "@/data/creators-testimonials";
+
+export default function SpotlightHero() {
   return (
-    <section className="relative overflow-hidden">
-      {/* Gradient spotlight background */}
-      <div
-        className="absolute inset-0 -z-10 opacity-30"
-        style={{
-          background:
-            "radial-gradient(circle at 50% 0%, rgba(154, 107, 59, 0.3) 0%, transparent 60%)",
-        }}
-      />
+    // Transparent wrapper; no section-wide overlays
+    <section className="spotlight-hero hero-transparent relative isolate bg-transparent">
+      <div className="container py-16 md:py-20">
+        <div className="grid md:grid-cols-2 gap-6 md:gap-8 items-start">
+          {/* Left: Headline, subtext, CTAs */}
+          <div>
+            <motion.h1
+              initial={{ opacity: 0, y: 8, filter: "blur(6px)" }}
+              whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+              viewport={{ once: true, amount: 0.6 }}
+              transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+              className="text-4xl md:text-6xl font-extrabold leading-tight neon"
+            >
+              The Future of <span className="text-gradient">3D Assets</span>{" "}
+              <span className="inline-block glitch" aria-hidden="true">
+                |
+              </span>
+            </motion.h1>
 
-      <div className="container py-20 md:py-28">
-        <div className="max-w-3xl mx-auto text-center">
-          <h1 className="font-display text-5xl md:text-6xl lg:text-7xl leading-tight">
-            Premium 3D Models for Creators
-          </h1>
-          <p className="text-muted mt-6 text-lg md:text-xl max-w-2xl mx-auto">
-            Discover high-quality 3D assets from talented artists. Preview live
-            in 3D, purchase securely, and download instantly. Built for game
-            developers, designers, and creative professionals.
-          </p>
-          <div className="mt-8 flex flex-wrap gap-4 justify-center">
-            <Link
-              href="/models"
-              className="btn text-base px-6 py-3"
-              aria-label="Browse all 3D models"
+            <motion.p
+              initial={{ opacity: 0, y: 8 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.6 }}
+              transition={{
+                delay: 0.05,
+                duration: 0.4,
+                ease: [0.22, 1, 0.36, 1],
+              }}
+              className="mt-5 text-lg text-zinc-300/85 max-w-2xl"
             >
-              Browse Models
-            </Link>
-            <Link
-              href="/dashboard/upload"
-              className="btn btn-secondary text-base px-6 py-3"
-              aria-label="Upload your 3D models"
+              Curated, high‑quality models. A sleek, neon‑dark experience. Built
+              for creators, studios, and teams.
+            </motion.p>
+
+            <motion.div
+              initial={{ opacity: 0, y: 8 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.6 }}
+              transition={{
+                delay: 0.1,
+                duration: 0.4,
+                ease: [0.22, 1, 0.36, 1],
+              }}
+              className="mt-7 flex flex-wrap items-center gap-4"
             >
-              Upload Model
-            </Link>
+              <NeonButton as="a" href="/models" variant="primary">
+                Browse Models
+              </NeonButton>
+              <NeonButton as="a" href="/dashboard/upload" variant="outline">
+                Upload
+              </NeonButton>
+            </motion.div>
+
+            {/* Trust chips (local glass only) */}
+            <motion.ul
+              initial={{ opacity: 0, y: 8 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.6 }}
+              transition={{
+                delay: 0.15,
+                duration: 0.4,
+                ease: [0.22, 1, 0.36, 1],
+              }}
+              className="mt-6 grid grid-cols-2 gap-3 max-w-lg text-sm text-zinc-300/90"
+            >
+              <li className="glass rounded-lg px-3 py-2 border-glass">
+                ✨ Instant previews
+              </li>
+              <li className="glass rounded-lg px-3 py-2 border-glass">
+                🔒 Secure checkout
+              </li>
+              <li className="glass rounded-lg px-3 py-2 border-glass">
+                🚀 Fast uploads
+              </li>
+              <li className="glass rounded-lg px-3 py-2 border-glass">
+                🧩 Curated assets
+              </li>
+            </motion.ul>
           </div>
+
+          {/* Right: Testimonials (local card surface only) */}
+          <motion.div
+            initial={{ opacity: 0, y: 10, filter: "blur(6px)" }}
+            whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+            viewport={{ once: true, amount: 0.4 }}
+            transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+            className="md:mt-1"
+          >
+            <AnimatedTestimonials
+              testimonials={creatorTestimonials}
+              interval={3500}
+            />
+          </motion.div>
         </div>
       </div>
+
+      <style jsx>{`
+        .glitch {
+          animation: blink 2.2s steps(1) infinite;
+          color: rgba(0, 236, 255, 0.9);
+          text-shadow: 0 0 12px rgba(214, 89, 255, 0.6);
+        }
+        @keyframes blink {
+          0%,
+          96%,
+          100% {
+            opacity: 0;
+          }
+          97% {
+            opacity: 1;
+          }
+          98% {
+            opacity: 0;
+          }
+          99% {
+            opacity: 1;
+          }
+        }
+        @media (prefers-reduced-motion: reduce) {
+          .glitch {
+            animation: none;
+            opacity: 1;
+          }
+        }
+      `}</style>
     </section>
   );
 }
