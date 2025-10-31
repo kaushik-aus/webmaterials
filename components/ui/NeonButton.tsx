@@ -42,16 +42,16 @@ export function NeonButton({
     `,
   };
 
-  const Component = href ? motion.a : motion.button;
-  const props = href ? { href } : { onClick, disabled };
-
+  // Use motion.button for all cases - let parent Link handle navigation
   return (
-    <Component
+    <motion.button
+      type="button"
       className={`${baseStyles} ${variantStyles[variant]} ${className}`}
       whileHover={{ scale: disabled ? 1 : 1.02 }}
       whileTap={{ scale: disabled ? 1 : 0.98 }}
       aria-label={ariaLabel}
-      {...props}
+      onClick={onClick}
+      disabled={disabled}
     >
       <span className="relative z-10">{children}</span>
       {!disabled && (
@@ -62,6 +62,6 @@ export function NeonButton({
           transition={{ duration: 0.6, ease: "easeInOut" }}
         />
       )}
-    </Component>
+    </motion.button>
   );
 }

@@ -80,7 +80,7 @@ export function Particles() {
         @keyframes twinkle {
           0%,
           100% {
-            opacity: ${particles[0]?.opacity || 0.3};
+            opacity: 0.3;
             transform: scale(1);
           }
           50% {

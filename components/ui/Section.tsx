@@ -68,15 +68,13 @@ export function Section({
       viewport={{ once: true, margin: "-100px" }}
       variants={containerVariants}
     >
-      {stagger ? (
+      {stagger && Array.isArray(children) ? (
         <>
-          {Array.isArray(children)
-            ? children.map((child, i) => (
-                <motion.div key={i} variants={itemVariants}>
-                  {child}
-                </motion.div>
-              ))
-            : children}
+          {children.map((child, i) => (
+            <motion.div key={`section-item-${i}`} variants={itemVariants}>
+              {child}
+            </motion.div>
+          ))}
         </>
       ) : (
         <motion.div variants={itemVariants}>{children}</motion.div>

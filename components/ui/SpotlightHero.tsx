@@ -90,12 +90,12 @@ export function SpotlightHero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4, ease: "easeOut" }}
           >
-            <Link href="/models" passHref>
+            <Link href="/models">
               <NeonButton variant="primary" ariaLabel="Browse all 3D models">
                 Browse Models
               </NeonButton>
             </Link>
-            <Link href="/dashboard/upload" passHref>
+            <Link href="/dashboard/upload">
               <NeonButton variant="outline" ariaLabel="Upload your 3D models">
                 Upload Model
               </NeonButton>
