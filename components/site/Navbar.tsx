@@ -23,32 +23,50 @@ export default function Navbar() {
   }, []);
 
   return (
-    <header className="border-b border-muted/60 sticky top-0 bg-paper/80 backdrop-blur-sm z-10">
+    <header className="border-b border-white/10 sticky top-0 glass z-50">
       <nav className="container py-4 flex items-center justify-between">
-        <Link href="/" className="font-display text-xl font-semibold">
+        <Link
+          href="/"
+          className="font-display text-xl font-semibold gradient-text text-glow-cyan"
+        >
           ModelMart
         </Link>
         <div className="flex items-center gap-6">
-          <Link href="/" className="text-sm hover:underline">
+          <Link
+            href="/"
+            className="text-sm text-ink hover:text-cyan-400 transition-colors duration-300"
+          >
             Home
           </Link>
-          <Link href="/models" className="text-sm hover:underline">
+          <Link
+            href="/models"
+            className="text-sm text-ink hover:text-cyan-400 transition-colors duration-300"
+          >
             Browse
           </Link>
-          <Link href="/cart" className="text-sm hover:underline relative">
+          <Link
+            href="/cart"
+            className="text-sm text-ink hover:text-cyan-400 transition-colors duration-300 relative"
+          >
             Cart
             {count > 0 && (
-              <span className="absolute -top-2 -right-2 bg-accent text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+              <span className="absolute -top-2 -right-2 bg-gradient-to-r from-cyan-500 to-blue-500 text-black text-xs rounded-full w-5 h-5 flex items-center justify-center shadow-[0_0_10px_rgba(6,182,212,0.6)]">
                 {count}
               </span>
             )}
           </Link>
           {isSignedIn ? (
-            <Link href="/signin" className="text-sm hover:underline">
+            <Link
+              href="/signin"
+              className="text-sm text-ink hover:text-cyan-400 transition-colors duration-300"
+            >
               Account
             </Link>
           ) : (
-            <Link href="/signin" className="text-sm hover:underline">
+            <Link
+              href="/signin"
+              className="text-sm text-ink hover:text-cyan-400 transition-colors duration-300"
+            >
               Sign in
             </Link>
           )}

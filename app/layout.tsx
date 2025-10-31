@@ -4,6 +4,8 @@ import "./globals.css";
 import { CartProvider } from "@/components/cart/CartProvider";
 import Navbar from "@/components/site/Navbar";
 import Footer from "@/components/site/Footer";
+import { BackgroundCanvas } from "@/components/ui/BackgroundCanvas";
+import { RouteTransition } from "@/components/motion/RouteTransition";
 
 // Using system fonts as fallback due to network restrictions
 const inter = { variable: "--font-inter" };
@@ -48,10 +50,13 @@ export default function RootLayout({
           strategy="beforeInteractive"
         />
       </head>
-      <body className="min-h-screen bg-paper text-ink antialiased">
+      <body className="min-h-screen bg-paper text-ink antialiased relative">
+        <BackgroundCanvas />
         <CartProvider>
           <Navbar />
-          <main className="min-h-[80vh]">{children}</main>
+          <RouteTransition>
+            <main className="min-h-[80vh] relative z-10">{children}</main>
+          </RouteTransition>
           <Footer />
         </CartProvider>
       </body>
