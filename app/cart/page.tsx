@@ -43,36 +43,36 @@ export default function CartPage() {
   };
 
   return (
-    <section className="container py-8">
-      <h1 className="font-display text-3xl mb-4">Your cart</h1>
+    <section className="container py-10">
+      <h1 className="font-display text-4xl gradient-text mb-6">Your cart</h1>
       {items.length === 0 ? (
-        <div className="rounded-xl border border-muted/60 p-6">
-          <p>Your cart is empty.</p>
-          <Link href="/models" className="btn btn-secondary mt-3">
+        <div className="glass rounded-xl border border-white/10 p-8 text-center">
+          <p className="text-ink text-lg mb-4">Your cart is empty.</p>
+          <Link href="/models" className="btn btn-secondary">
             Browse models
           </Link>
         </div>
       ) : (
         <>
-          <ul className="divide-y divide-[var(--border)] bg-white rounded-xl border border-muted/60">
+          <ul className="divide-y divide-white/10 glass rounded-xl border border-white/10 overflow-hidden">
             {items.map((line) => (
-              <li key={line.model.slug} className="p-4 flex gap-4 items-center">
+              <li key={line.model.slug} className="p-5 flex gap-4 items-center hover:bg-white/5 transition-colors">
                 <img
                   src={line.model.thumbnail}
                   alt={line.model.title}
-                  className="size-16 rounded-md object-cover"
+                  className="size-20 rounded-md object-cover border border-white/10"
                 />
                 <div className="flex-1">
-                  <div className="font-semibold">{line.model.title}</div>
-                  <div className="text-sm text-muted">
+                  <div className="font-semibold text-ink text-lg">{line.model.title}</div>
+                  <div className="text-sm text-muted mt-1">
                     {line.qty} × {formatPrice(line.model.priceInCents)}
                   </div>
                 </div>
-                <div className="font-semibold">
+                <div className="font-semibold text-cyan-400 text-lg">
                   {formatPrice(line.qty * line.model.priceInCents)}
                 </div>
                 <button
-                  className="ml-3 text-sm underline"
+                  className="ml-3 text-sm text-cyan-400 hover:text-cyan-300 transition-colors"
                   onClick={() => remove(line.model.slug)}
                 >
                   Remove
@@ -80,13 +80,16 @@ export default function CartPage() {
               </li>
             ))}
           </ul>
-          <div className="mt-6 flex items-center justify-between">
-            <button className="text-sm underline" onClick={() => clear()}>
+          <div className="mt-8 glass rounded-xl border border-white/10 p-6 flex items-center justify-between">
+            <button 
+              className="text-sm text-cyan-400 hover:text-cyan-300 transition-colors" 
+              onClick={() => clear()}
+            >
               Clear cart
             </button>
-            <div className="flex items-center gap-4">
-              <div className="text-lg font-semibold">
-                {formatPrice(totalInCents)}
+            <div className="flex items-center gap-6">
+              <div className="text-xl font-semibold text-ink">
+                Total: <span className="text-cyan-400">{formatPrice(totalInCents)}</span>
               </div>
               <button
                 className="btn"
