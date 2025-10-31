@@ -4,7 +4,7 @@ import Script from "next/script";
 import "./globals.css";
 import { CartProvider } from "@/components/cart/CartProvider";
 import Navbar from "@/components/site/Navbar";
-import Footer from "@/components/site/Footer";
+import { Footer } from "@/components/site/Footer";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const playfair = Playfair_Display({
