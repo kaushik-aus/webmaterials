@@ -15,8 +15,9 @@ export default function Navbar() {
       .then((data) => {
         setIsSignedIn(!!data?.user);
       })
-      .catch(() => {
-        // Auth not configured or error - fail silently
+      .catch((error) => {
+        // Auth not configured or error - fail gracefully
+        console.debug("Auth session check failed (this is expected if auth is not configured):", error.message);
         setIsSignedIn(false);
       });
   }, []);

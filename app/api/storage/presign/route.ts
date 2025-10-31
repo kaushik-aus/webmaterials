@@ -14,6 +14,10 @@ const ALLOWED_CONTENT_TYPES = [
   "image/webp",
 ];
 
+// Configuration constants
+const MAX_FILE_SIZE = 100 * 1024 * 1024; // 100MB
+const DEFAULT_MAX_SIZE = 50 * 1024 * 1024; // 50MB
+
 const presignSchema = z.object({
   key: z.string().min(1).max(200),
   contentType: z.string().refine(
@@ -22,13 +26,13 @@ const presignSchema = z.object({
       message: "Invalid content type. Only 3D models and images are allowed.",
     }
   ),
-  maxSize: z.number().int().positive().max(100 * 1024 * 1024).optional(), // Max 100MB
+  maxSize: z.number().int().positive().max(MAX_FILE_SIZE).optional(),
 });
 
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-    const { key, contentType, maxSize = 50 * 1024 * 1024 } =
+    const { key, contentType, maxSize = DEFAULT_MAX_SIZE } =
       presignSchema.parse(body);
 
     if (!S3_BUCKET_NAME) {

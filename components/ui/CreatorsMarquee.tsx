@@ -53,7 +53,7 @@ export function CreatorsMarquee() {
 
         @media (prefers-reduced-motion: reduce) {
           .marquee-content {
-            animation: none;
+            animation: marquee 120s linear infinite; /* Slower animation for reduced motion */
           }
         }
 
