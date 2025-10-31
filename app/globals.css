@@ -1,3 +1,68 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Theme tokens */
+:root {
+  --paper: #fbf8f3;
+  --ink: #1f2220;
+  --muted: #6a6e6b;
+  --accent: #9a6b3b;
+  --border: #e8e2d9;
+}
+
+.bg-paper {
+  background: var(--paper);
+}
+.text-ink {
+  color: var(--ink);
+}
+.text-muted {
+  color: var(--muted);
+}
+.border-muted {
+  border-color: var(--border);
+}
+
+/* Fonts */
+.font-display {
+  font-family: var(--font-playfair), Georgia, serif;
+}
+
+/* Utilities */
+.container {
+  @apply mx-auto px-4 max-w-6xl;
+}
+
+/* Buttons */
+.btn {
+  @apply inline-flex items-center justify-center rounded-full px-4 py-2 font-semibold transition;
+  border: 1px solid var(--ink);
+  background: var(--ink);
+  color: #fff;
+}
+.btn-secondary {
+  @apply bg-transparent text-ink;
+}
+
+/* Cards */
+.card {
+  @apply rounded-xl border bg-white shadow-sm overflow-hidden;
+  border-color: var(--border);
+}
+
+/* Simple grid */
+.grid-auto {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 0.875rem;
+}
+
+/* Model viewer base */
+model-viewer {
+  width: 100%;
+  height: 420px;
+  background: #f5f2ec;
+  border: 1px solid var(--border);
+  border-radius: 0.75rem;
+}
