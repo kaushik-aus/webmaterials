@@ -14,7 +14,7 @@ export function useIntersectionFade() {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) {
+          if (entry.isIntersecting && entry.target) {
             entry.target.classList.add("show");
           }
         });
