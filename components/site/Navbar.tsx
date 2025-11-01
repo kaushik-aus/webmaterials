@@ -7,9 +7,9 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-[var(--border)] backdrop-blur bg-paper/80">
+    <header className="sticky top-0 z-50 border-b border-[var(--border)] backdrop-blur bg-near-black/80">
       <div className="container flex h-14 items-center justify-between">
-        <Link href="/" className="font-display text-xl">
+        <Link href="/" className="font-display text-xl text-gradient-orange">
           ModelMart
         </Link>
         <nav className="hidden md:flex items-center gap-6 text-sm">

@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export function Footer() {
   return (
     <footer className="border-t border-muted/60 mt-10">
@@ -12,7 +14,7 @@ export function Footer() {
           <p className="font-semibold mb-2">Explore</p>
           <ul className="space-y-1 text-sm">
             <li>
-              <a href="/models">Models</a>
+              <Link href="/models">Models</Link>
             </li>
             <li>
               <a className="opacity-60 pointer-events-none" aria-disabled>

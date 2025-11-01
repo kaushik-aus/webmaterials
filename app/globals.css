@@ -2,17 +2,43 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Theme tokens */
+/* Theme tokens - Anime Black/Orange/White palette */
 :root {
-  --paper: #fbf8f3;
-  --ink: #1f2220;
-  --muted: #6a6e6b;
-  --accent: #9a6b3b;
-  --border: #e8e2d9;
+  --bg: #0a0a0a;
+  --paper: #fafafa;
+  --paper-warm: #fbf8f3;
+  --ink: #1a1a1a;
+  --muted: #737373;
+  --border: #262626;
+  --brand: #f97316;
+  --brand-light: #fb923c;
+  --brand-dark: #ea580c;
+}
+
+body {
+  background: var(--bg);
+  background-image: radial-gradient(ellipse at top, rgba(249, 115, 22, 0.1) 0%, transparent 50%), 
+                    radial-gradient(ellipse at bottom right, rgba(251, 146, 60, 0.08) 0%, transparent 50%);
+  background-attachment: fixed;
+  color: var(--paper);
+}
+
+/* Selection color - orange highlight with white text */
+::selection {
+  background-color: var(--brand);
+  color: white;
+}
+
+::-moz-selection {
+  background-color: var(--brand);
+  color: white;
 }
 
 .bg-paper {
   background: var(--paper);
+}
+.bg-paper-warm {
+  background: var(--paper-warm);
 }
 .text-ink {
   color: var(--ink);
@@ -22,6 +48,12 @@
 }
 .border-muted {
   border-color: var(--border);
+}
+.text-brand {
+  color: var(--brand);
+}
+.bg-brand {
+  background: var(--brand);
 }
 
 /* Fonts */
@@ -34,21 +66,62 @@
   @apply mx-auto px-4 max-w-6xl;
 }
 
-/* Buttons */
+/* Buttons - with anime micro-interactions */
 .btn {
-  @apply inline-flex items-center justify-center rounded-full px-4 py-2 font-semibold transition;
-  border: 1px solid var(--ink);
-  background: var(--ink);
-  color: #fff;
+  @apply inline-flex items-center justify-center rounded-full px-4 py-2 font-semibold transition-all duration-300;
+  border: 1px solid var(--brand);
+  background: linear-gradient(135deg, #fb923c 0%, #f97316 50%, #ea580c 100%);
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+.btn:hover {
+  box-shadow: 0 0 20px rgba(249, 115, 22, 0.4);
+  transform: translateY(-2px);
+}
+.btn:active {
+  transform: translateY(0);
 }
 .btn-secondary {
-  @apply bg-transparent text-ink;
+  @apply bg-transparent;
+  background: transparent;
+  color: var(--brand);
+  border: 1px solid var(--brand);
+}
+.btn-secondary:hover {
+  background: rgba(249, 115, 22, 0.1);
 }
 
-/* Cards */
+/* Cards - Aceternity-inspired gradient border with anime hover */
 .card {
-  @apply rounded-xl border bg-white shadow-sm overflow-hidden;
-  border-color: var(--border);
+  @apply rounded-xl overflow-hidden relative;
+  background: var(--paper-warm);
+  border: 1px solid var(--border);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 0.75rem;
+  padding: 1px;
+  background: linear-gradient(135deg, var(--brand-light), var(--brand), var(--brand-dark));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+.card:hover::before {
+  opacity: 1;
+}
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 30px -10px rgba(249, 115, 22, 0.5);
 }
 
 /* Simple grid */
@@ -65,4 +138,96 @@ model-viewer {
   background: #f5f2ec;
   border: 1px solid var(--border);
   border-radius: 0.75rem;
+}
+
+/* Link hover micro-interaction - ReactBits-inspired */
+.link-hover {
+  position: relative;
+  display: inline-block;
+  text-decoration: none;
+  color: var(--brand);
+  transition: color 0.3s ease;
+}
+.link-hover::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  bottom: -2px;
+  left: 0;
+  background: linear-gradient(90deg, var(--brand-light), var(--brand));
+  transform: scaleX(0);
+  transform-origin: bottom right;
+  transition: transform 0.3s ease;
+}
+.link-hover:hover::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+/* Neon text utilities */
+.text-neon {
+  color: var(--brand);
+  text-shadow: 0 0 10px rgba(249, 115, 22, 0.6),
+               0 0 20px rgba(249, 115, 22, 0.4),
+               0 0 30px rgba(249, 115, 22, 0.2);
+}
+
+.text-gradient-orange {
+  background: linear-gradient(135deg, #fb923c 0%, #f97316 50%, #ea580c 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Manga divider utilities */
+.manga-divider {
+  position: relative;
+  height: 2px;
+  background: var(--border);
+  margin: 2rem 0;
+}
+.manga-divider::before,
+.manga-divider::after {
+  content: '';
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  background: var(--bg);
+  border: 2px solid var(--border);
+  transform: rotate(45deg);
+  top: 50%;
+  margin-top: -6px;
+}
+.manga-divider::before {
+  left: -6px;
+}
+.manga-divider::after {
+  right: -6px;
+}
+
+/* Seam guard - fixes 1px line issues */
+.seam-guard {
+  transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+/* Reduced motion respect */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  .card:hover {
+    transform: none;
+  }
+  
+  .btn:hover {
+    transform: none;
+  }
 }
