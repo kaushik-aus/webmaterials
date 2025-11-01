@@ -5,7 +5,9 @@ import { CartProvider } from "@/components/cart/CartProvider";
 import Navbar from "@/components/site/Navbar";
 import { Footer } from "@/components/site/Footer";
 
-// Fallback to system fonts if Google Fonts are unavailable
+// Font fallbacks: Google Fonts (Inter, Playfair Display) are blocked in some environments.
+// Using system fonts as fallbacks ensures consistent typography across all environments.
+// The CSS custom properties maintain compatibility with existing font-display usage.
 const fontVariables = {
   '--font-inter': '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
   '--font-playfair': 'Georgia, "Times New Roman", serif',

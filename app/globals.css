@@ -130,6 +130,26 @@ model-viewer {
   text-shadow: 0 0 15px var(--brand-glow), 0 0 30px var(--brand-glow), 0 0 45px var(--brand-glow);
 }
 
+/* Neon flicker animation */
+@keyframes neonFlicker {
+  0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+    text-shadow: 
+      0 0 10px rgba(249, 115, 22, 0.5),
+      0 0 20px rgba(249, 115, 22, 0.3);
+  }
+  20%, 24%, 55% {
+    text-shadow: 
+      0 0 5px rgba(249, 115, 22, 0.3),
+      0 0 10px rgba(249, 115, 22, 0.2);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .neon-flicker {
+    animation: neonFlicker 8s infinite;
+  }
+}
+
 /* Gradient text utility */
 .gradient-text {
   background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);

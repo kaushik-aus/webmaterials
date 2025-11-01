@@ -30,39 +30,12 @@ export function NeonHeading({
     <Component 
       className={`
         font-display font-bold
-        gradient-text neon-text
+        gradient-text neon-text neon-flicker
         ${sizeClasses[size]}
         ${className}
       `}
-      style={{
-        animation: 'prefers-reduced-motion: no-preference ? neonFlicker 8s infinite : none',
-      }}
     >
       {children}
-      <style jsx>{`
-        @keyframes neonFlicker {
-          0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
-            text-shadow: 
-              0 0 10px rgba(249, 115, 22, 0.5),
-              0 0 20px rgba(249, 115, 22, 0.3);
-          }
-          20%, 24%, 55% {
-            text-shadow: 
-              0 0 5px rgba(249, 115, 22, 0.3),
-              0 0 10px rgba(249, 115, 22, 0.2);
-          }
-        }
-        
-        @media (prefers-reduced-motion: reduce) {
-          @keyframes neonFlicker {
-            0%, 100% {
-              text-shadow: 
-                0 0 10px rgba(249, 115, 22, 0.5),
-                0 0 20px rgba(249, 115, 22, 0.3);
-            }
-          }
-        }
-      `}</style>
     </Component>
   );
 }
