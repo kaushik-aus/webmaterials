@@ -26,36 +26,37 @@ export default function CartPage() {
         </div>
       ) : (
         <>
-          <ul className="divide-y rounded-xl border" style={{ 
+          <div className="rounded-xl border" style={{ 
             borderColor: 'var(--border)',
-            background: 'var(--paper)',
-            divideColor: 'var(--border)'
+            background: 'var(--paper)'
           }}>
-            {items.map((line) => (
-              <li key={line.model.slug} className="p-5 flex gap-4 items-center">
-                <img
-                  src={line.model.thumbnail}
-                  alt={line.model.title}
-                  className="size-16 rounded-md object-cover"
-                />
-                <div className="flex-1">
-                  <div className="font-semibold text-ink">{line.model.title}</div>
-                  <div className="text-sm text-muted mt-1">
-                    {line.qty} × {formatPrice(line.model.priceInCents)}
+            <ul className="divide-y" style={{ borderColor: 'var(--border)' }}>
+              {items.map((line) => (
+                <li key={line.model.slug} className="p-5 flex gap-4 items-center border-border-subtle">
+                  <img
+                    src={line.model.thumbnail}
+                    alt={line.model.title}
+                    className="size-16 rounded-md object-cover"
+                  />
+                  <div className="flex-1">
+                    <div className="font-semibold text-ink">{line.model.title}</div>
+                    <div className="text-sm text-muted mt-1">
+                      {line.qty} × {formatPrice(line.model.priceInCents)}
+                    </div>
                   </div>
-                </div>
-                <div className="font-semibold text-mikan-400">
-                  {formatPrice(line.qty * line.model.priceInCents)}
-                </div>
-                <button
-                  className="ml-3 text-sm link-hover text-mikan-400"
-                  onClick={() => remove(line.model.slug)}
-                >
-                  Remove
-                </button>
-              </li>
-            ))}
-          </ul>
+                  <div className="font-semibold text-mikan-400">
+                    {formatPrice(line.qty * line.model.priceInCents)}
+                  </div>
+                  <button
+                    className="ml-3 text-sm link-hover text-mikan-400"
+                    onClick={() => remove(line.model.slug)}
+                  >
+                    Remove
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </div>
           <div className="mt-6 flex items-center justify-between">
             <button className="text-sm link-hover text-muted" onClick={() => clear()}>
               Clear cart

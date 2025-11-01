@@ -1,16 +1,15 @@
 import type { Metadata } from "next";
-import { Inter, Playfair_Display } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
 import { CartProvider } from "@/components/cart/CartProvider";
 import Navbar from "@/components/site/Navbar";
 import { Footer } from "@/components/site/Footer";
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
-const playfair = Playfair_Display({
-  subsets: ["latin"],
-  variable: "--font-playfair",
-});
+// Fallback to system fonts if Google Fonts are unavailable
+const fontVariables = {
+  '--font-inter': '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+  '--font-playfair': 'Georgia, "Times New Roman", serif',
+};
 
 export const metadata: Metadata = {
   title: "ModelMart — Buy and sell 3D models",
@@ -43,7 +42,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${inter.variable} ${playfair.variable}`}>
+    <html lang="en" style={fontVariables as React.CSSProperties}>
       <head>
         {/* 3D viewer web component */}
         <Script
