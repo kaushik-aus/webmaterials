@@ -51,7 +51,7 @@ export default function RootLayout({
           strategy="beforeInteractive"
         />
       </head>
-      <body className="min-h-screen bg-paper text-ink antialiased">
+      <body className="min-h-screen text-ink antialiased" style={{ background: 'var(--bg)' }}>
         <CartProvider>
           <Navbar />
           <main className="min-h-[80vh]">{children}</main>

@@ -2,13 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Theme tokens */
+/* Anime-inspired theme tokens (Black/Orange/White) */
 :root {
-  --paper: #fbf8f3;
-  --ink: #1f2220;
-  --muted: #6a6e6b;
-  --accent: #9a6b3b;
-  --border: #e8e2d9;
+  --bg: #0a0a0a;
+  --paper: #1a1a1a;
+  --ink: #f5f5f5;
+  --muted: #a0a0a0;
+  --border: #2a2a2a;
+  --brand: #f97316;
+  --brand-glow: rgba(249, 115, 22, 0.5);
 }
 
 .bg-paper {
@@ -24,6 +26,18 @@
   border-color: var(--border);
 }
 
+/* Orange selection highlight */
+::selection {
+  background-color: var(--brand);
+  color: white;
+}
+
+/* Near-black background with orange radial nebula */
+body {
+  background: radial-gradient(ellipse at top, rgba(249, 115, 22, 0.08) 0%, var(--bg) 50%),
+              var(--bg);
+}
+
 /* Fonts */
 .font-display {
   font-family: var(--font-playfair), Georgia, serif;
@@ -34,21 +48,56 @@
   @apply mx-auto px-4 max-w-6xl;
 }
 
-/* Buttons */
+/* Buttons with anime-inspired hover effects */
 .btn {
-  @apply inline-flex items-center justify-center rounded-full px-4 py-2 font-semibold transition;
-  border: 1px solid var(--ink);
-  background: var(--ink);
-  color: #fff;
+  @apply inline-flex items-center justify-center rounded-full px-4 py-2 font-semibold transition-all duration-300;
+  border: 1px solid var(--brand);
+  background: var(--brand);
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+.btn:hover {
+  box-shadow: 0 0 20px var(--brand-glow);
+  transform: translateY(-2px);
+}
+@media (prefers-reduced-motion: no-preference) {
+  .btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+  }
+  .btn:hover::before {
+    width: 300px;
+    height: 300px;
+  }
 }
 .btn-secondary {
-  @apply bg-transparent text-ink;
+  @apply bg-transparent text-ink border-border-subtle;
+  background: var(--paper);
+}
+.btn-secondary:hover {
+  border-color: var(--brand);
+  color: var(--brand);
 }
 
-/* Cards */
+/* Cards with gradient border and lift shadow */
 .card {
-  @apply rounded-xl border bg-white shadow-sm overflow-hidden;
+  @apply rounded-xl border shadow-sm overflow-hidden transition-all duration-300;
+  background: var(--paper);
   border-color: var(--border);
+}
+.card:hover {
+  box-shadow: 0 8px 32px rgba(249, 115, 22, 0.2);
+  transform: translateY(-4px);
+  border-color: var(--brand);
 }
 
 /* Simple grid */
@@ -62,7 +111,113 @@
 model-viewer {
   width: 100%;
   height: 420px;
-  background: #f5f2ec;
+  background: var(--paper);
   border: 1px solid var(--border);
   border-radius: 0.75rem;
+}
+
+/* Neon text utilities */
+.neon-text {
+  color: var(--brand);
+  text-shadow: 0 0 10px var(--brand-glow), 0 0 20px var(--brand-glow);
+}
+
+.neon-text-sm {
+  text-shadow: 0 0 5px var(--brand-glow);
+}
+
+.neon-text-lg {
+  text-shadow: 0 0 15px var(--brand-glow), 0 0 30px var(--brand-glow), 0 0 45px var(--brand-glow);
+}
+
+/* Gradient text utility */
+.gradient-text {
+  background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Manga divider utilities */
+.manga-divider {
+  position: relative;
+  height: 2px;
+  background: linear-gradient(90deg, transparent 0%, var(--border) 20%, var(--border) 80%, transparent 100%);
+  margin: 2rem 0;
+}
+
+.manga-divider::before,
+.manga-divider::after {
+  content: '';
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: var(--border);
+  transform: rotate(45deg);
+}
+
+.manga-divider::before {
+  left: 10%;
+  top: -3px;
+}
+
+.manga-divider::after {
+  right: 10%;
+  top: -3px;
+}
+
+/* Screentone halftone overlay */
+.screentone-overlay {
+  position: relative;
+}
+
+.screentone-overlay::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, transparent 30%, rgba(249, 115, 22, 0.05) 30%);
+  background-size: 4px 4px;
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+/* Link hover underline micro-interaction (ReactBits-inspired) */
+.link-hover {
+  position: relative;
+  display: inline-block;
+}
+
+.link-hover::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--brand);
+  transition: width 0.3s ease;
+}
+
+.link-hover:hover::after {
+  width: 100%;
+}
+
+/* Hero seam guard utility */
+.seam-guard {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* Prefers reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .btn::before,
+  .card:hover,
+  .link-hover::after {
+    transition: none;
+  }
+  
+  .btn:hover,
+  .card:hover {
+    transform: none;
+  }
 }
