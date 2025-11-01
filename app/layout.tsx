@@ -1,22 +1,11 @@
 import "./globals.css";
-import React from "react";
+import LiquidEtherBackground from "@/components/LiquidEtherBackground";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 
-interface LiquidEtherBackgroundProps {
-  opacity: number;
-  speed: number;
-  scale: number;
-}
-
-const LiquidEtherBackground: React.FC<LiquidEtherBackgroundProps> = ({
-  opacity,
-  speed,
-  scale,
-}) => {
-  return (
-    <div style={{ opacity }}>
-      {/* Add your liquid ether background implementation here */}
-    </div>
-  );
+export const metadata = {
+  title: "ModelMart - Premium 3D Assets",
+  description: "Discover anime-style 3D models, textures, and environments",
 };
 
 export default function RootLayout({
@@ -26,9 +15,18 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet" />
+      </head>
+      <body className="font-sans antialiased" style={{ fontFamily: 'Inter, system-ui, -apple-system, sans-serif' }}>
         <LiquidEtherBackground opacity={0.55} speed={0.35} scale={1.2} />
-        {children}
+        <div className="relative z-10">
+          <Header />
+          <main>{children}</main>
+          <Footer />
+        </div>
       </body>
     </html>
   );
