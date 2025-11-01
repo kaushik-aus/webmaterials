@@ -1,23 +1,6 @@
 import "./globals.css";
 import React from "react";
-
-interface LiquidEtherBackgroundProps {
-  opacity: number;
-  speed: number;
-  scale: number;
-}
-
-const LiquidEtherBackground: React.FC<LiquidEtherBackgroundProps> = ({
-  opacity,
-  speed,
-  scale,
-}) => {
-  return (
-    <div style={{ opacity }}>
-      {/* Add your liquid ether background implementation here */}
-    </div>
-  );
-};
+import LiquidEtherBackground from "./components/LiquidEtherBackground";
 
 export default function RootLayout({
   children,
