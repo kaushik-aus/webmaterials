@@ -58,7 +58,7 @@ export default function Testimonials() {
             </svg>
           </div>
           <p className="text-lg md:text-xl text-dim mb-8 leading-relaxed italic">
-            "{current.content}"
+            &ldquo;{current.content}&rdquo;
           </p>
           <div className="flex items-center gap-4">
             <div className="w-12 h-12 bg-accent rounded-full flex items-center justify-center text-white font-bold text-lg">

@@ -1,13 +1,6 @@
 import type { Metadata } from "next";
-import { Inter, Nunito } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
-
-const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
-const nunito = Nunito({
-  subsets: ["latin"],
-  variable: "--font-nunito",
-});
 
 export const metadata: Metadata = {
   title: "ModelMart — The Future of 3D Assets",
@@ -40,7 +33,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${inter.variable} ${nunito.variable}`}>
+    <html lang="en">
       <body className="min-h-screen font-sans">
         <Header />
         <main>{children}</main>

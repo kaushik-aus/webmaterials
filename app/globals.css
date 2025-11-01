@@ -7,7 +7,7 @@
   --shadow-m: 0 4px 12px rgba(0,0,0,0.1);
   --shadow-l: 0 8px 24px rgba(0,0,0,0.12);
   
-  --font-family-sans: var(--font-inter), system-ui, sans-serif;
+  --font-family-sans: system-ui, -apple-system, "Segoe UI", sans-serif;
 }
 
 @layer base {
