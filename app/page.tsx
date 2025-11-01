@@ -7,7 +7,7 @@ export default function HomePage() {
   return (
     <>
       {/* Hero */}
-      <section className="relative overflow-hidden">
+      <section className="relative overflow-hidden seam-guard">
         <div className="container py-16 md:py-24">
           <p className="uppercase tracking-wide text-xs text-muted mb-2">
             Marketplace for 3D
@@ -63,7 +63,7 @@ export default function HomePage() {
 
       {/* CTA strip */}
       <section className="container my-10">
-        <div className="rounded-xl border border-muted/60 p-5 md:p-6">
+        <div className="rounded-xl border border-[var(--border)] bg-white/80 p-5 md:p-6 shadow-sm">
           <div className="md:flex items-center justify-between gap-6">
             <div>
               <p className="font-display text-xl">Are you a 3D artist?</p>

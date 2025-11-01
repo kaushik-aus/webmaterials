@@ -11,7 +11,7 @@ export default function CartPage() {
     <section className="container py-8">
       <h1 className="font-display text-3xl mb-4">Your cart</h1>
       {items.length === 0 ? (
-        <div className="rounded-xl border border-muted/60 p-6">
+        <div className="rounded-xl border border-[var(--border)] bg-white/80 p-6 shadow-sm">
           <p>Your cart is empty.</p>
           <Link href="/models" className="btn btn-secondary mt-3">
             Browse models
@@ -19,7 +19,7 @@ export default function CartPage() {
         </div>
       ) : (
         <>
-          <ul className="divide-y divide-[var(--border)] bg-white rounded-xl border border-muted/60">
+          <ul className="divide-y divide-[var(--border)] bg-white rounded-xl border border-[var(--border)] shadow-sm">
             {items.map((line) => (
               <li key={line.model.slug} className="p-4 flex gap-4 items-center">
                 <img

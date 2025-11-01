@@ -1,6 +1,6 @@
 export function Footer() {
   return (
-    <footer className="border-t border-muted/60 mt-10">
+    <footer className="border-t border-[var(--border)] mt-10 bg-white/50">
       <div className="container py-10 grid gap-6 md:grid-cols-3">
         <div>
           <p className="font-display text-xl">ModelMart</p>
