@@ -3,7 +3,8 @@ export interface Asset {
   title: string;
   author: string;
   price: string;
-  image: string;
+  image?: string;
+  gradient: string;
   height?: number;
 }
 
@@ -13,7 +14,7 @@ export const assets: Asset[] = [
     title: "Cyberpunk Character",
     author: "Neon Studios",
     price: "$49.99",
-    image: "https://images.unsplash.com/photo-1614730321146-b6fa6a46bcb4?w=600&q=80&auto=format&fit=crop",
+    gradient: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
     height: 350,
   },
   {
@@ -21,7 +22,7 @@ export const assets: Asset[] = [
     title: "Anime Girl Portrait",
     author: "ArtByMika",
     price: "$39.99",
-    image: "https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?w=600&q=80&auto=format&fit=crop",
+    gradient: "linear-gradient(135deg, #f093fb 0%, #f5576c 100%)",
     height: 280,
   },
   {
@@ -29,7 +30,7 @@ export const assets: Asset[] = [
     title: "Sci-Fi Environment",
     author: "FutureLab",
     price: "$79.99",
-    image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=600&q=80&auto=format&fit=crop",
+    gradient: "linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)",
     height: 320,
   },
   {
@@ -37,7 +38,7 @@ export const assets: Asset[] = [
     title: "Mecha Robot",
     author: "TechArt",
     price: "$59.99",
-    image: "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=600&q=80&auto=format&fit=crop",
+    gradient: "linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)",
     height: 380,
   },
   {
@@ -45,7 +46,7 @@ export const assets: Asset[] = [
     title: "Fantasy Weapon Set",
     author: "BladeCraft",
     price: "$29.99",
-    image: "https://images.unsplash.com/photo-1614732414444-096e5f1122d5?w=600&q=80&auto=format&fit=crop",
+    gradient: "linear-gradient(135deg, #fa709a 0%, #fee140 100%)",
     height: 250,
   },
   {
@@ -53,7 +54,7 @@ export const assets: Asset[] = [
     title: "Urban Street Scene",
     author: "CityScapes",
     price: "$89.99",
-    image: "https://images.unsplash.com/photo-1617791160505-6f00504e3519?w=600&q=80&auto=format&fit=crop",
+    gradient: "linear-gradient(135deg, #30cfd0 0%, #330867 100%)",
     height: 340,
   },
   {
@@ -61,7 +62,7 @@ export const assets: Asset[] = [
     title: "Anime Character Pack",
     author: "StudioGhibli3D",
     price: "$99.99",
-    image: "https://images.unsplash.com/photo-1618556450994-a6a128ef0d9d?w=600&q=80&auto=format&fit=crop",
+    gradient: "linear-gradient(135deg, #a8edea 0%, #fed6e3 100%)",
     height: 290,
   },
   {
@@ -69,7 +70,7 @@ export const assets: Asset[] = [
     title: "Futuristic Vehicle",
     author: "VehicleWorks",
     price: "$69.99",
-    image: "https://images.unsplash.com/photo-1614730321146-b6fa6a46bcb4?w=600&q=80&auto=format&fit=crop",
+    gradient: "linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%)",
     height: 310,
   },
 ];

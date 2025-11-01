@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Image from "next/image";
 import { slides } from "@/data/slides";
 import RippleButton from "./RippleButton";
 
@@ -29,7 +28,7 @@ export default function Carousel() {
   };
 
   return (
-    <section className="relative w-full h-[500px] md:h-[600px] overflow-hidden bg-gray-100">
+    <section className="relative w-full h-[500px] md:h-[600px] overflow-hidden">
       {/* Slides */}
       {slides.map((slide, index) => (
         <div
@@ -38,19 +37,15 @@ export default function Carousel() {
             index === currentIndex ? "opacity-100" : "opacity-0"
           }`}
         >
-          <Image
-            src={slide.image}
-            alt={slide.title}
-            fill
-            className="object-cover"
-            priority={index === 0}
+          <div
+            className="absolute inset-0"
+            style={{ background: slide.gradient }}
           />
-          <div className="absolute inset-0 bg-black/30" />
-          <div className="container relative h-full flex flex-col justify-center items-start text-white">
-            <h2 className="text-4xl md:text-6xl font-bold mb-4 max-w-2xl">
+          <div className="container relative h-full flex flex-col justify-center items-start text-white z-10">
+            <h2 className="text-4xl md:text-6xl font-bold mb-4 max-w-2xl drop-shadow-lg">
               {slide.title}
             </h2>
-            <p className="text-lg md:text-xl mb-6 max-w-xl">
+            <p className="text-lg md:text-xl mb-6 max-w-xl drop-shadow-md">
               {slide.subtitle}
             </p>
             <RippleButton onClick={() => console.log(`CTA: ${slide.cta}`)}>

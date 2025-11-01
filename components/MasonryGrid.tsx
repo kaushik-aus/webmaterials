@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { assets } from "@/data/assets";
 
 export default function MasonryGrid() {
@@ -17,15 +16,13 @@ export default function MasonryGrid() {
             key={asset.id}
             className="break-inside-avoid mb-4 bg-white rounded-lg shadow-s hover:shadow-l transition-shadow cursor-pointer group overflow-hidden"
           >
-            <div className="relative w-full overflow-hidden">
-              <Image
-                src={asset.image}
-                alt={asset.title}
-                width={600}
-                height={asset.height || 300}
-                className="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-300"
-              />
-            </div>
+            <div
+              className="relative w-full overflow-hidden group-hover:scale-105 transition-transform duration-300"
+              style={{
+                height: `${asset.height || 300}px`,
+                background: asset.gradient,
+              }}
+            />
             <div className="p-4">
               <h3 className="font-bold text-ink mb-1">{asset.title}</h3>
               <div className="flex justify-between items-center">
