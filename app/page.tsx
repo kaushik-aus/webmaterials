@@ -13,7 +13,7 @@ export default function HomePage() {
             Marketplace for 3D
           </p>
           <h1 className="font-display text-4xl md:text-5xl leading-tight">
-            Sell and buy production‑ready 3D models
+            Sell and buy production‑ready <span className="text-gradient-orange">3D Models</span>
           </h1>
           <p className="text-muted mt-3 max-w-2xl">
             Preview models live in 3D, purchase securely, and download

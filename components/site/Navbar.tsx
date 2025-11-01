@@ -7,7 +7,7 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-[var(--border)] backdrop-blur bg-paper/80">
+    <header className="sticky top-0 z-50 border-b border-[var(--border)] backdrop-blur-md bg-white/80">
       <div className="container flex h-14 items-center justify-between">
         <Link href="/" className="font-display text-xl">
           ModelMart

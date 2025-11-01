@@ -13,7 +13,7 @@ export default function ModelsPage() {
           <Link
             href={`/models/${m.slug}`}
             key={m.slug}
-            className="card hover:shadow-md transition"
+            className="card"
           >
             <img
               src={m.thumbnail}
