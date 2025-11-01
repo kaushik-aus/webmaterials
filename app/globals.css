@@ -1,56 +1,63 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@theme {
+  --color-accent: #ff6600;
+  --color-ink: #000000;
+  --color-dim: #212121;
+  
+  --shadow-s: 0 1px 3px rgba(0,0,0,0.08);
+  --shadow-m: 0 4px 12px rgba(0,0,0,0.1);
+  --shadow-l: 0 8px 24px rgba(0,0,0,0.12);
+  
+  --font-family-sans: var(--font-inter), system-ui, sans-serif;
+}
 
 @layer base {
-  :root {
-    --accent: #ff6600;
-    --ink: #000000;
-    --dim: #212121;
-  }
-
   body {
-    @apply bg-white text-ink antialiased;
+    background-color: white;
+    color: var(--color-ink);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 }
 
-@layer utilities {
-  /* Ripple Effect */
-  .ripple {
-    position: relative;
-    overflow: hidden;
-  }
+/* Ripple Effect */
+.ripple {
+  position: relative;
+  overflow: hidden;
+}
 
-  .ripple-effect {
-    position: absolute;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.6);
-    transform: scale(0);
-    animation: ripple-animation 0.6s ease-out;
-    pointer-events: none;
-  }
+.ripple-effect {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.6);
+  transform: scale(0);
+  animation: ripple-animation 0.6s ease-out;
+  pointer-events: none;
+}
 
-  @keyframes ripple-animation {
-    to {
-      transform: scale(4);
-      opacity: 0;
-    }
-  }
-
-  /* Fade-in Reveal Animation */
-  .fade-in-section {
+@keyframes ripple-animation {
+  to {
+    transform: scale(4);
     opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
   }
+}
 
-  .fade-in-section.show {
-    opacity: 1;
-    transform: translateY(0);
-  }
+/* Fade-in Reveal Animation */
+.fade-in-section {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
 
-  /* Container */
-  .container {
-    @apply mx-auto px-4 max-w-7xl;
-  }
+.fade-in-section.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Container */
+.container {
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  max-width: 80rem;
 }
