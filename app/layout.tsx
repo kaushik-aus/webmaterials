@@ -1,36 +1,33 @@
 import type { Metadata } from "next";
-import { Inter, Playfair_Display } from "next/font/google";
-import Script from "next/script";
+import { Inter, Nunito } from "next/font/google";
 import "./globals.css";
-import { CartProvider } from "@/components/cart/CartProvider";
-import Navbar from "@/components/site/Navbar";
-import { Footer } from "@/components/site/Footer";
+import Header from "@/components/Header";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
-const playfair = Playfair_Display({
+const nunito = Nunito({
   subsets: ["latin"],
-  variable: "--font-playfair",
+  variable: "--font-nunito",
 });
 
 export const metadata: Metadata = {
-  title: "ModelMart — Buy and sell 3D models",
+  title: "ModelMart — The Future of 3D Assets",
   description:
-    "A marketplace for 3D artists to sell their models. Preview in 3D, purchase securely, and support creators.",
+    "Discover premium anime-style 3D models for games, animation, and VR. Join thousands of creators who trust ModelMart.",
   metadataBase: new URL("https://example.com"),
   openGraph: {
     type: "website",
-    title: "ModelMart — Buy and sell 3D models",
+    title: "ModelMart — The Future of 3D Assets",
     description:
-      "A marketplace for 3D artists to sell their models. Preview in 3D, purchase securely, and support creators.",
+      "Discover premium anime-style 3D models for games, animation, and VR. Join thousands of creators who trust ModelMart.",
     images: [
-      "https://images.unsplash.com/photo-1519681393784-d120267933ba?w=1600&q=80&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=1600&q=80&auto=format&fit=crop",
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "ModelMart — Buy and sell 3D models",
+    title: "ModelMart — The Future of 3D Assets",
     description:
-      "A marketplace for 3D artists to sell their models. Preview in 3D, purchase securely, and support creators.",
+      "Discover premium anime-style 3D models for games, animation, and VR. Join thousands of creators who trust ModelMart.",
   },
   icons: {
     icon: [{ url: "/favicon.ico", sizes: "32x32" }],
@@ -43,20 +40,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${inter.variable} ${playfair.variable}`}>
-      <head>
-        {/* 3D viewer web component */}
-        <Script
-          src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js"
-          strategy="beforeInteractive"
-        />
-      </head>
-      <body className="min-h-screen bg-paper text-ink antialiased">
-        <CartProvider>
-          <Navbar />
-          <main className="min-h-[80vh]">{children}</main>
-          <Footer />
-        </CartProvider>
+    <html lang="en" className={`${inter.variable} ${nunito.variable}`}>
+      <body className="min-h-screen font-sans">
+        <Header />
+        <main>{children}</main>
+        <footer className="bg-gray-50 border-t border-gray-200 py-8">
+          <div className="container text-center text-sm text-gray-600">
+            <p>&copy; 2025 ModelMart. All rights reserved.</p>
+          </div>
+        </footer>
       </body>
     </html>
   );
