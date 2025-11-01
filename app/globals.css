@@ -2,13 +2,34 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Theme tokens */
+/* Theme tokens - Black/Orange/White with subtle anime aesthetics */
 :root {
-  --paper: #fbf8f3;
-  --ink: #1f2220;
-  --muted: #6a6e6b;
-  --accent: #9a6b3b;
-  --border: #e8e2d9;
+  --background: #0A0A0B;
+  --text: #FAFAFA;
+  --text-muted: #9CA3AF;
+  --border: #1F1F23;
+  --brand: #FF6B35;
+  --brand-dark: #E5522D;
+  --surface: #141416;
+  --paper: #FAFAFA;
+  --ink: #1A1A1A;
+  --muted: #6B6B6B;
+  --accent: #FF6B35;
+}
+
+/* Selection styling */
+::selection {
+  background: rgba(255, 107, 53, 0.3);
+  color: var(--text);
+}
+
+/* Body background with nebula effect */
+body {
+  background: var(--background);
+  background-image: 
+    radial-gradient(circle at 20% 50%, rgba(255, 107, 53, 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(255, 107, 53, 0.05) 0%, transparent 50%);
+  color: var(--text);
 }
 
 .bg-paper {
@@ -24,6 +45,12 @@
   border-color: var(--border);
 }
 
+/* Seam guard utility - prevents 1px gaps/seams */
+.seam-guard {
+  margin-bottom: -1px;
+  padding-bottom: 1px;
+}
+
 /* Fonts */
 .font-display {
   font-family: var(--font-playfair), Georgia, serif;
@@ -36,19 +63,42 @@
 
 /* Buttons */
 .btn {
-  @apply inline-flex items-center justify-center rounded-full px-4 py-2 font-semibold transition;
-  border: 1px solid var(--ink);
-  background: var(--ink);
+  @apply inline-flex items-center justify-center rounded-full px-6 py-3 font-semibold transition-all;
+  background: linear-gradient(135deg, var(--brand) 0%, var(--brand-dark) 100%);
   color: #fff;
+  border: none;
+  box-shadow: 0 4px 14px 0 rgba(255, 107, 53, 0.25);
+}
+.btn:hover {
+  box-shadow: 0 6px 20px 0 rgba(255, 107, 53, 0.35);
+  transform: translateY(-1px);
+}
+.btn:active {
+  transform: translateY(0);
 }
 .btn-secondary {
-  @apply bg-transparent text-ink;
+  @apply bg-transparent;
+  background: transparent;
+  color: var(--brand);
+  border: 2px solid var(--brand);
+  box-shadow: none;
+}
+.btn-secondary:hover {
+  background: rgba(255, 107, 53, 0.1);
+  box-shadow: 0 4px 12px 0 rgba(255, 107, 53, 0.15);
 }
 
 /* Cards */
 .card {
-  @apply rounded-xl border bg-white shadow-sm overflow-hidden;
+  @apply rounded-xl border overflow-hidden transition-all;
+  background: var(--surface);
   border-color: var(--border);
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+}
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 15px -3px rgba(255, 107, 53, 0.15), 0 4px 6px -4px rgba(255, 107, 53, 0.1);
+  border-color: rgba(255, 107, 53, 0.3);
 }
 
 /* Simple grid */
@@ -62,7 +112,50 @@
 model-viewer {
   width: 100%;
   height: 420px;
-  background: #f5f2ec;
+  background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 0.75rem;
+}
+
+/* Anime-inspired utilities (subtle, respects prefers-reduced-motion) */
+.anime-halftone {
+  position: relative;
+}
+.anime-halftone::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, rgba(255, 107, 53, 0.15) 1px, transparent 1px);
+  background-size: 8px 8px;
+  opacity: 0.3;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.anime-speedlines {
+  position: relative;
+  overflow: hidden;
+}
+.anime-speedlines::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    90deg,
+    transparent,
+    transparent 10px,
+    rgba(255, 107, 53, 0.05) 10px,
+    rgba(255, 107, 53, 0.05) 11px
+  );
+  opacity: 0.4;
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Respect reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .anime-halftone::before,
+  .anime-speedlines::after {
+    opacity: 0;
+  }
 }

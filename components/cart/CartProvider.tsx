@@ -22,15 +22,18 @@ type CartCtx = {
 const Ctx = createContext<CartCtx | null>(null);
 
 export function CartProvider({ children }: { children: React.ReactNode }) {
-  const [items, setItems] = useState<CartLine[]>([]);
+  const [items, setItems] = useState<CartLine[]>(() => {
+    // Initialize from localStorage on mount
+    if (typeof window !== 'undefined') {
+      try {
+        const raw = localStorage.getItem("mm:cart");
+        if (raw) return JSON.parse(raw);
+      } catch {}
+    }
+    return [];
+  });
 
-  // Load/persist to localStorage
-  useEffect(() => {
-    try {
-      const raw = localStorage.getItem("mm:cart");
-      if (raw) setItems(JSON.parse(raw));
-    } catch {}
-  }, []);
+  // Persist to localStorage when items change
   useEffect(() => {
     try {
       localStorage.setItem("mm:cart", JSON.stringify(items));

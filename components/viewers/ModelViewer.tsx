@@ -17,10 +17,29 @@ export function ModelViewer({
   autoRotate?: boolean;
   cameraControls?: boolean;
 }) {
+  // Guard against empty string sources
+  if (!src || src.trim() === '') {
+    return (
+      <div style={{ 
+        width: "100%", 
+        height: "480px", 
+        borderRadius: 12,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        background: 'var(--surface)',
+        border: '1px solid var(--border)',
+        color: 'var(--text-muted)'
+      }}>
+        No model source provided
+      </div>
+    );
+  }
+
   return (
     <model-viewer
       src={src}
-      poster={poster}
+      poster={poster || undefined}
       ar={ar}
       autoplay={autoRotate}
       camera-controls={cameraControls}

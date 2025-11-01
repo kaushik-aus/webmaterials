@@ -7,15 +7,15 @@ export default function HomePage() {
   return (
     <>
       {/* Hero */}
-      <section className="relative overflow-hidden">
+      <section className="relative overflow-hidden seam-guard anime-halftone">
         <div className="container py-16 md:py-24">
-          <p className="uppercase tracking-wide text-xs text-muted mb-2">
+          <p className="uppercase tracking-wide text-xs mb-2" style={{ color: 'var(--text-muted)' }}>
             Marketplace for 3D
           </p>
           <h1 className="font-display text-4xl md:text-5xl leading-tight">
             Sell and buy production‑ready 3D models
           </h1>
-          <p className="text-muted mt-3 max-w-2xl">
+          <p className="mt-3 max-w-2xl" style={{ color: 'var(--text-muted)' }}>
             Preview models live in 3D, purchase securely, and download
             instantly. Built for 3D artists, game devs, and archviz teams.
           </p>
@@ -45,14 +45,20 @@ export default function HomePage() {
               key={m.slug}
               className="card group"
             >
-              <img
-                src={m.thumbnail}
-                alt={m.title}
-                className="aspect-square object-cover"
-              />
+              {m.thumbnail && m.thumbnail.trim() !== '' ? (
+                <img
+                  src={m.thumbnail}
+                  alt={m.title}
+                  className="aspect-square object-cover"
+                />
+              ) : (
+                <div className="aspect-square flex items-center justify-center" style={{ background: 'var(--surface)', color: 'var(--text-muted)' }}>
+                  No image
+                </div>
+              )}
               <div className="p-3">
                 <div className="font-semibold">{m.title}</div>
-                <div className="text-sm text-muted">
+                <div className="text-sm" style={{ color: 'var(--text-muted)' }}>
                   by {m.author.name} • {formatPrice(m.priceInCents)}
                 </div>
               </div>
@@ -63,11 +69,11 @@ export default function HomePage() {
 
       {/* CTA strip */}
       <section className="container my-10">
-        <div className="rounded-xl border border-muted/60 p-5 md:p-6">
+        <div className="rounded-xl border p-5 md:p-6" style={{ borderColor: 'var(--border)', background: 'var(--surface)' }}>
           <div className="md:flex items-center justify-between gap-6">
             <div>
               <p className="font-display text-xl">Are you a 3D artist?</p>
-              <p className="text-muted">
+              <p style={{ color: 'var(--text-muted)' }}>
                 List your models, set your price, and get paid. Creator tools
                 coming soon.
               </p>

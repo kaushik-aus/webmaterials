@@ -20,13 +20,13 @@ export default function ModelDetailPage({
       <div className="grid md:grid-cols-2 gap-6">
         <div>
           <ModelViewer src={model.modelUrl} />
-          <div className="mt-2 text-xs text-muted">
+          <div className="mt-2 text-xs" style={{ color: 'var(--text-muted)' }}>
             Use mouse/touch to orbit. Scroll to zoom.
           </div>
         </div>
         <div>
           <h1 className="font-display text-3xl">{model.title}</h1>
-          <p className="text-muted mt-1">by {model.author.name}</p>
+          <p className="mt-1" style={{ color: 'var(--text-muted)' }}>by {model.author.name}</p>
           <p className="mt-4">{model.description}</p>
           <div className="mt-6 flex items-center gap-4">
             <div className="text-2xl font-semibold">
@@ -34,7 +34,7 @@ export default function ModelDetailPage({
             </div>
             <AddToCart slug={model.slug} />
           </div>
-          <ul className="mt-6 text-sm text-muted list-disc pl-5">
+          <ul className="mt-6 text-sm list-disc pl-5" style={{ color: 'var(--text-muted)' }}>
             <li>Formats: GLB (example), add FBX/OBJ on upload (soon)</li>
             <li>License: Standard (set per model later)</li>
           </ul>
@@ -46,7 +46,8 @@ export default function ModelDetailPage({
           {model.tags.map((t) => (
             <span
               key={t}
-              className="text-xs rounded-full border border-muted/60 px-3 py-1 bg-white"
+              className="text-xs rounded-full border px-3 py-1"
+              style={{ borderColor: 'var(--border)', background: 'var(--surface)' }}
             >
               {t}
             </span>
