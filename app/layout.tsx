@@ -1,16 +1,13 @@
 import type { Metadata } from "next";
-import { Inter, Playfair_Display } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
 import { CartProvider } from "@/components/cart/CartProvider";
 import Navbar from "@/components/site/Navbar";
 import { Footer } from "@/components/site/Footer";
+import { RouteTransition } from "@/components/ui/RouteTransition";
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
-const playfair = Playfair_Display({
-  subsets: ["latin"],
-  variable: "--font-playfair",
-});
+// Using system fonts as fallback for sandboxed environment
+// In production, you can re-enable Google Fonts import
 
 export const metadata: Metadata = {
   title: "ModelMart — Buy and sell 3D models",
@@ -43,7 +40,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${inter.variable} ${playfair.variable}`}>
+    <html lang="en">
       <head>
         {/* 3D viewer web component */}
         <Script
@@ -51,10 +48,14 @@ export default function RootLayout({
           strategy="beforeInteractive"
         />
       </head>
-      <body className="min-h-screen antialiased">
+      <body className="min-h-screen antialiased" style={{
+        fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
+      }}>
         <CartProvider>
           <Navbar />
-          <main className="min-h-[80vh]">{children}</main>
+          <RouteTransition>
+            <main className="min-h-[80vh]">{children}</main>
+          </RouteTransition>
           <Footer />
         </CartProvider>
       </body>
