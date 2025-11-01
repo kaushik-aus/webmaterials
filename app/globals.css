@@ -11,10 +11,6 @@
   --brand: #FF6B35;
   --brand-dark: #E5522D;
   --surface: #141416;
-  --paper: #FAFAFA;
-  --ink: #1A1A1A;
-  --muted: #6B6B6B;
-  --accent: #FF6B35;
 }
 
 /* Selection styling */
@@ -32,18 +28,7 @@ body {
   color: var(--text);
 }
 
-.bg-paper {
-  background: var(--paper);
-}
-.text-ink {
-  color: var(--ink);
-}
-.text-muted {
-  color: var(--muted);
-}
-.border-muted {
-  border-color: var(--border);
-}
+
 
 /* Seam guard utility - prevents 1px gaps/seams */
 .seam-guard {
@@ -106,6 +91,11 @@ body {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
   gap: 0.875rem;
+}
+
+/* Divide color utility */
+.divide-y > * + * {
+  border-top-color: var(--border);
 }
 
 /* Model viewer base */

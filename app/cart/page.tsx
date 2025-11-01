@@ -19,7 +19,7 @@ export default function CartPage() {
         </div>
       ) : (
         <>
-          <ul className="divide-y rounded-xl border" style={{ borderColor: 'var(--border)', background: 'var(--surface)', divideColor: 'var(--border)' }}>
+          <ul className="divide-y rounded-xl border" style={{ borderColor: 'var(--border)', background: 'var(--surface)' }}>
             {items.map((line) => (
               <li key={line.model.slug} className="p-4 flex gap-4 items-center">
                 {line.model.thumbnail && line.model.thumbnail.trim() !== '' ? (
